@@ -1,0 +1,26 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "vp2sog-songbook",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--songbook",
+                "resources/Nowa Piesn.json",
+            ]
+        },
+        {
+            "name": "vp2sog-bible",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--bible",
+                "resources/Biblia Warszawska.json",
+            ]
+        }
+    ]
+}
