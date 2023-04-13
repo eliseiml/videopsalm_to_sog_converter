@@ -29,14 +29,8 @@ class SongbookConverter {
   String _getSongTitle(Song song) =>
       song.title.replaceAll('${song.id}', '').trim();
 
-  String _getVerseText(SongVerse verse) => verse.text
-      .replaceAll(RegExp('<[/a-zA-Z0-9]*>'), '')
-      .replaceAll(RegExp(' {2,}'), ' ')
-      .replaceAll(' / x 2', '}-x2')
-      .replaceAll(' / x 3', '}-x3')
-      .replaceAll(' / x 4', '}-x4')
-      .replaceAll('/ ', ' {')
-      .trim();
+  String _getVerseText(SongVerse verse) =>
+      verse.text.replaceAll(RegExp('<[/a-zA-Z0-9]*>'), '').trim();
 
   String _padNumber(int number, int digitsCount) =>
       '$number'.padLeft(digitsCount, '0');

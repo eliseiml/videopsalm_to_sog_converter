@@ -5,11 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "program": "bin/vp2sog.dart",
             "name": "vp2sog-songbook",
             "request": "launch",
             "type": "dart",
             "args": [
                 "--songbook",
+                // "resources/nowe_z.json"
                 "resources/Nowa Piesn.json",
             ]
         },

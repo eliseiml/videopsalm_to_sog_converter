@@ -10,12 +10,13 @@ void convertDocument(String inputFilePath, String documentType) async {
     print('Start reading... Path = $inputFilePath');
 
     final file = File(inputFilePath);
-    final rawdata =
-        (await file.readAsString()).replaceAll('\n', ' ').replaceAll('\r', '');
+    final rawdata = await file.readAsString();
+
+    final preparedData = prepareJson(rawdata);
 
     print('Decoding json...');
 
-    final data = json5Decode(rawdata);
+    final data = json5Decode(preparedData);
 
     print('JSON decoded');
     print('Converting to SOG...');
@@ -43,4 +44,19 @@ void convertDocument(String inputFilePath, String documentType) async {
   } catch (e) {
     print(e);
   }
+}
+
+String prepareJson(String data) {
+  final result = data.replaceAll('\$', '&').replaceAllMapped(
+    RegExp(r'"(?:\\.|[^\\"])*"', multiLine: true),
+    (match) {
+      final item = match[0];
+      if (item == null) throw 'Error. item = null at ${match.start}';
+      return item.replaceAll('\n', r'$ ').replaceAll('\r', '');
+    },
+  );
+  return result
+      .replaceAll('\n', ' ')
+      .replaceAll('\r', '')
+      .replaceAll(RegExp(r' {1}\$'), r'$');
 }
